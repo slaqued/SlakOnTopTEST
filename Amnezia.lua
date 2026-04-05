@@ -1,12 +1,12 @@
 --[[
-    ╔═══════════════════════════════════════════════════════╗
-    ║           AMNEZIA UI LIBRARY v1.0.0                   ║
-    ║        Premium Script Hub Interface                   ║
-    ║     Dark Glassmorphism • Neon Accents • Smooth        ║
-    ╚═══════════════════════════════════════════════════════╝
+    +=======================================================+
+    |           AMNEZIA UI LIBRARY v1.0.0                   |
+    |        Premium Script Hub Interface                   |
+    |     Dark Glassmorphism - Neon Accents - Smooth        |
+    +=======================================================+
 
     USAGE EXAMPLE:
-    ─────────────
+    -------------
     local Amnezia = loadstring(game:HttpGet("..."))()
 
     local Window = Amnezia:CreateWindow({
@@ -25,12 +25,12 @@
     Section:AddButton({ Name = "Teleport", Callback = function() end })
     Section:AddInput({ Name = "Walk Speed", Default = "16", Callback = function(v) end })
 
-    Amnezia:Notify({ Title = "Chargé!", Message = "Amnezia activé.", Type = "success", Duration = 4 })
+    Amnezia:Notify({ Title = "Charge!", Message = "Amnezia active.", Type = "success", Duration = 4 })
 ]]
 
--- ┌─────────────────────────────────────────┐
--- │              CORE SETUP                 │
--- └─────────────────────────────────────────┘
+-- +-----------------------------------------+
+-- |              CORE SETUP                 |
+-- +-----------------------------------------+
 
 local Amnezia = {}
 Amnezia.__index = Amnezia
@@ -44,9 +44,9 @@ local HttpService    = game:GetService("HttpService")
 local LocalPlayer = Players.LocalPlayer
 local Mouse       = LocalPlayer:GetMouse()
 
--- ┌─────────────────────────────────────────┐
--- │              THEME                      │
--- └─────────────────────────────────────────┘
+-- +-----------------------------------------+
+-- |              THEME                      |
+-- +-----------------------------------------+
 
 local Theme = {
     -- Backgrounds
@@ -97,9 +97,9 @@ local Theme = {
     FontMono      = Enum.Font.Code,
 }
 
--- ┌─────────────────────────────────────────┐
--- │              UTILITIES                  │
--- └─────────────────────────────────────────┘
+-- +-----------------------------------------+
+-- |              UTILITIES                  |
+-- +-----------------------------------------+
 
 local Utils = {}
 
@@ -249,9 +249,9 @@ function Utils.LoadConfig(name)
     return success and data or {}
 end
 
--- ┌─────────────────────────────────────────┐
--- │         ICON SYSTEM (SVG-like)          │
--- └─────────────────────────────────────────┘
+-- +-----------------------------------------+
+-- |         ICON SYSTEM (SVG-like)          |
+-- +-----------------------------------------+
 
 local Icons = {
     -- Roblox asset IDs for icons (using standard Roblox icons)
@@ -278,9 +278,9 @@ local function GetIcon(name)
     return Icons[name] or Icons.default
 end
 
--- ┌─────────────────────────────────────────┐
--- │           NOTIFICATION SYSTEM           │
--- └─────────────────────────────────────────┘
+-- +-----------------------------------------+
+-- |           NOTIFICATION SYSTEM           |
+-- +-----------------------------------------+
 
 local NotificationHolder
 local NotifCount = 0
@@ -416,9 +416,9 @@ function Amnezia:Notify(opts)
     NotifCount = NotifCount + 1
 end
 
--- ┌─────────────────────────────────────────┐
--- │           INTRO / LOADER                │
--- └─────────────────────────────────────────┘
+-- +-----------------------------------------+
+-- |           INTRO / LOADER                |
+-- +-----------------------------------------+
 
 local function ShowIntro(gui)
     local introFrame = Instance.new("Frame")
@@ -482,7 +482,7 @@ local function ShowIntro(gui)
     local logoStroke = Utils.Stroke(logoText, Theme.Accent, 0)
 
     local subText = Instance.new("TextLabel")
-    subText.Text = "SCRIPT HUB  •  v1.0.0"
+    subText.Text = "SCRIPT HUB  -  v1.0.0"
     subText.TextColor3 = Theme.TextMuted
     subText.Font = Theme.FontLight
     subText.TextSize = 13
@@ -544,7 +544,7 @@ local function ShowIntro(gui)
         task.wait(0.5)
 
         -- Load bar fill
-        local steps = {"Initialisation...", "Chargement modules...", "Connexion...", "Prêt!"}
+        local steps = {"Initialisation...", "Chargement modules...", "Connexion...", "Pret!"}
         for i, msg in ipairs(steps) do
             loadText.Text = msg
             Utils.Tween(loadFill, { Size = UDim2.new(i/4, 0, 1, 0) }, 0.35, Enum.EasingStyle.Quart)
@@ -566,9 +566,9 @@ local function ShowIntro(gui)
     return 1.8 + 4*0.38 + 0.85
 end
 
--- ┌─────────────────────────────────────────┐
--- │             KEY SYSTEM                  │
--- └─────────────────────────────────────────┘
+-- +-----------------------------------------+
+-- |             KEY SYSTEM                  |
+-- +-----------------------------------------+
 
 local function ShowKeySystem(gui, requiredKey, callback)
     local overlay = Instance.new("Frame")
@@ -607,7 +607,7 @@ local function ShowKeySystem(gui, requiredKey, callback)
     lockImg.Parent = panel
 
     local titleLbl = Instance.new("TextLabel")
-    titleLbl.Text = "Accès Requis"
+    titleLbl.Text = "Acces Requis"
     titleLbl.TextColor3 = Theme.Text
     titleLbl.Font = Theme.Font
     titleLbl.TextSize = 18
@@ -619,7 +619,7 @@ local function ShowKeySystem(gui, requiredKey, callback)
     titleLbl.Parent = panel
 
     local subLbl = Instance.new("TextLabel")
-    subLbl.Text = "Entrez votre clé Amnezia pour continuer"
+    subLbl.Text = "Entrez votre cle Amnezia pour continuer"
     subLbl.TextColor3 = Theme.TextMuted
     subLbl.Font = Theme.FontMedium
     subLbl.TextSize = 11
@@ -647,7 +647,7 @@ local function ShowKeySystem(gui, requiredKey, callback)
     input.Font = Theme.FontMono
     input.TextSize = 13
     input.TextColor3 = Theme.Text
-    input.PlaceholderText = "Clé d'accès..."
+    input.PlaceholderText = "Cle d'acces..."
     input.PlaceholderColor3 = Theme.TextDim
     input.Text = ""
     input.ClearTextOnFocus = false
@@ -698,7 +698,7 @@ local function ShowKeySystem(gui, requiredKey, callback)
             overlay:Destroy()
             callback(true)
         else
-            errLbl.Text = "✕  Clé invalide. Réessayez."
+            errLbl.Text = "x  Cle invalide. Reessayez."
             Utils.Tween(inputBg, { BackgroundColor3 = Color3.fromRGB(40, 16, 16) }, 0.15)
             Utils.Tween(inputStroke, { Color = Theme.Error }, 0.15)
             task.wait(1.5)
@@ -714,9 +714,9 @@ local function ShowKeySystem(gui, requiredKey, callback)
     Utils.Tween(panel, { Position = UDim2.new(0.5, -190, 0.5, -120), BackgroundTransparency = 0 }, 0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
 end
 
--- ┌─────────────────────────────────────────┐
--- │           MAIN WINDOW                   │
--- └─────────────────────────────────────────┘
+-- +-----------------------------------------+
+-- |           MAIN WINDOW                   |
+-- +-----------------------------------------+
 
 function Amnezia:CreateWindow(opts)
     opts = opts or {}
@@ -763,7 +763,7 @@ function Amnezia:CreateWindow(opts)
     -- Outer border glow
     Utils.Stroke(mainFrame, Theme.BorderAccent, 1, 0.6)
 
-    -- ── SIDEBAR ───────────────────────────────────────────
+    -- -- SIDEBAR -------------------------------------------
     local sidebar = Instance.new("Frame")
     sidebar.Name = "Sidebar"
     sidebar.BackgroundColor3 = Theme.BG_Secondary
@@ -855,7 +855,7 @@ function Amnezia:CreateWindow(opts)
     divider.Parent = bottomInfo
 
     local versionLbl = Instance.new("TextLabel")
-    versionLbl.Text = "v1.0.0  •  Amnezia"
+    versionLbl.Text = "v1.0.0  -  Amnezia"
     versionLbl.TextColor3 = Theme.TextDim
     versionLbl.Font = Theme.FontMono
     versionLbl.TextSize = 9
@@ -866,7 +866,7 @@ function Amnezia:CreateWindow(opts)
     versionLbl.ZIndex = 12
     versionLbl.Parent = bottomInfo
 
-    -- ── HEADER ────────────────────────────────────────────
+    -- -- HEADER --------------------------------------------
     local header = Instance.new("Frame")
     header.Name = "Header"
     header.BackgroundColor3 = Theme.BG_Secondary
@@ -891,7 +891,7 @@ function Amnezia:CreateWindow(opts)
 
     -- Close button
     local closeBtn = Instance.new("TextButton")
-    closeBtn.Text = "×"
+    closeBtn.Text = "x"
     closeBtn.TextColor3 = Theme.TextMuted
     closeBtn.Font = Theme.Font
     closeBtn.TextSize = 20
@@ -918,7 +918,7 @@ function Amnezia:CreateWindow(opts)
 
     -- Minimize button
     local minBtn = Instance.new("TextButton")
-    minBtn.Text = "−"
+    minBtn.Text = "-"
     minBtn.TextColor3 = Theme.TextMuted
     minBtn.Font = Theme.Font
     minBtn.TextSize = 18
@@ -946,7 +946,7 @@ function Amnezia:CreateWindow(opts)
     -- Draggable
     Utils.MakeDraggable(mainFrame, header)
 
-    -- ── CONTENT AREA ─────────────────────────────────────
+    -- -- CONTENT AREA -------------------------------------
     local contentArea = Instance.new("Frame")
     contentArea.Name = "ContentArea"
     contentArea.BackgroundTransparency = 1
@@ -990,7 +990,7 @@ function Amnezia:CreateWindow(opts)
         Utils.Tween(tabObj.Content, { Position = UDim2.fromScale(0,0), BackgroundTransparency = 1 }, 0.25, Enum.EasingStyle.Quart)
     end
 
-    -- ── TAB OBJECT ────────────────────────────────────────
+    -- -- TAB OBJECT ----------------------------------------
     local Window = {}
     Window._configData = Utils.LoadConfig(configName)
     Window._configName = configName
@@ -1096,7 +1096,7 @@ function Amnezia:CreateWindow(opts)
             indicator.BackgroundTransparency = 0
         end
 
-        -- ── SECTION / COMPONENTS ─────────────────────────
+        -- -- SECTION / COMPONENTS -------------------------
         local Tab = {}
 
         function Tab:AddSection(secOpts)
@@ -1174,7 +1174,7 @@ function Amnezia:CreateWindow(opts)
                 return _itemOrder
             end
 
-            -- ── BUTTON ──────────────────────────────────
+            -- -- BUTTON ----------------------------------
             function Section:AddButton(opts)
                 opts = opts or {}
                 local name = opts.Name or "Button"
@@ -1221,7 +1221,7 @@ function Amnezia:CreateWindow(opts)
 
                 -- Arrow icon
                 local arrow = Instance.new("TextLabel")
-                arrow.Text = "›"
+                arrow.Text = ">"
                 arrow.TextColor3 = Theme.Accent
                 arrow.Font = Theme.Font
                 arrow.TextSize = 18
@@ -1247,7 +1247,7 @@ function Amnezia:CreateWindow(opts)
                 return row
             end
 
-            -- ── TOGGLE ──────────────────────────────────
+            -- -- TOGGLE ----------------------------------
             function Section:AddToggle(opts)
                 opts = opts or {}
                 local name    = opts.Name    or "Toggle"
@@ -1365,7 +1365,7 @@ function Amnezia:CreateWindow(opts)
                 return obj
             end
 
-            -- ── SLIDER ──────────────────────────────────
+            -- -- SLIDER ----------------------------------
             function Section:AddSlider(opts)
                 opts = opts or {}
                 local name    = opts.Name    or "Slider"
@@ -1487,7 +1487,7 @@ function Amnezia:CreateWindow(opts)
                 return { Set = SetValue, Get = function() return value end }
             end
 
-            -- ── DROPDOWN ────────────────────────────────
+            -- -- DROPDOWN --------------------------------
             function Section:AddDropdown(opts)
                 opts = opts or {}
                 local name    = opts.Name    or "Dropdown"
@@ -1539,7 +1539,7 @@ function Amnezia:CreateWindow(opts)
                 selectedLabel.Parent = row
 
                 local chevron = Instance.new("TextLabel")
-                chevron.Text = "⌄"
+                chevron.Text = "v"
                 chevron.TextColor3 = Theme.TextMuted
                 chevron.Font = Theme.Font
                 chevron.TextSize = 14
@@ -1665,7 +1665,7 @@ function Amnezia:CreateWindow(opts)
                 }
             end
 
-            -- ── INPUT ───────────────────────────────────
+            -- -- INPUT -----------------------------------
             function Section:AddInput(opts)
                 opts = opts or {}
                 local name    = opts.Name    or "Input"
@@ -1738,7 +1738,7 @@ function Amnezia:CreateWindow(opts)
                 }
             end
 
-            -- ── LABEL ───────────────────────────────────
+            -- -- LABEL -----------------------------------
             function Section:AddLabel(opts)
                 opts = opts or {}
                 local text  = opts.Text  or ""
@@ -1781,7 +1781,7 @@ function Amnezia:CreateWindow(opts)
         end)
     end
 
-    -- Sequence: intro → key → main
+    -- Sequence: intro -> key -> main
     if showIntro then
         local introDur = ShowIntro(gui)
         if key then
@@ -1804,8 +1804,8 @@ function Amnezia:CreateWindow(opts)
     return Window
 end
 
--- ┌─────────────────────────────────────────┐
--- │              RETURN                     │
--- └─────────────────────────────────────────┘
+-- +-----------------------------------------+
+-- |              RETURN                     |
+-- +-----------------------------------------+
 
 return Amnezia
